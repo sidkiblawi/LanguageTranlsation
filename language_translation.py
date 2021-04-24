@@ -109,7 +109,7 @@ criterion = nn.CrossEntropyLoss()
 
 
 def train(model: nn.Module,
-          iterator: torch.utils.data.DataLoader,
+          data: torch.utils.data.DataLoader,
           optimizer: optim.Optimizer,
           criterion: nn.Module,
           clip: float):
@@ -117,7 +117,7 @@ def train(model: nn.Module,
 
     epoch_loss = 0
 
-    for _, (src, trg) in enumerate(iterator):
+    for _, (src, trg) in  enumerate(data):
         src, trg = src.to(device), trg.to(device)
 
         optimizer.zero_grad()
@@ -171,7 +171,7 @@ def epoch_time(start_time: int,
     return elapsed_mins, elapsed_secs
 
 
-N_EPOCHS = 10
+N_EPOCHS = 1
 CLIP = 1
 
 best_valid_loss = float('inf')
